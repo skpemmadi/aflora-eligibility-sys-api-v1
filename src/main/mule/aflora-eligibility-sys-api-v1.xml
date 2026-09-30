@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6e87ef9d-072e-40d2-ba5a-604afa927cce" >
+		<http:listener-connection host="0.0.0.0" port="8085" />
+	</http:listener-config>
+	<flow name="aflora-eligibility-sys-api-v1Flow" doc:id="e395a98b-45ad-438c-bb6f-96a22ece60ef" >
+		<http:listener doc:name="Listener" doc:id="f3fdbf4e-5bf1-48c2-9e59-ddd9397d2957" config-ref="HTTP_Listener_config" path="/eligibility"/>
+		<logger level="INFO" doc:name="Logger" doc:id="434dc936-0f47-4e2f-9331-7162c995afcb" />
+		<http:request method="POST" doc:name="Request" doc:id="738a6a98-ee10-487d-8584-aa6516cec8b5" url="https://p5y7w81drj.execute-api.us-east-1.amazonaws.com/api/v1/eligibility/check"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f96205af-ea9f-4d2b-9501-453bacaa108c" />
+	</flow>
+</mule>
